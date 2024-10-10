@@ -58,7 +58,7 @@ document.querySelectorAll('.heart').forEach(item=>{
 })
 
 document.querySelector('.voiceSearchBtn').addEventListener('click',()=>{
-    if(document.querySelector('.searchInput').value == "兰大文创笔记本"){
+    if(document.querySelector('.searchInput').value == "兰州大学文创笔记本"){
         location.href = "notebook.html"
     }
 })
@@ -102,6 +102,7 @@ window.onload = function () {
                 times = setTimeout(() => {
                     this.stop(); // xfVoice.stop();
                     fixedBox.style.display = 'none';
+                    startBtn.classList.remove("active")
                 }, 3000);
             };
         }
@@ -110,6 +111,7 @@ window.onload = function () {
     // 开始识别
     startBtn['onclick'] = function () {
         xfVoice.start();
+        startBtn.classList.add("active")
     };
 
     // // 关闭识别
