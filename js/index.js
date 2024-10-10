@@ -4,26 +4,21 @@ if (SpeechRecognition) {
     const recognition = new SpeechRecognition();
     const voiceBtn = document.querySelector('.voiceBtn');
     const inputField = document.querySelector('.searchInput');
+    let isRecording = false; // 添加一个变量来跟踪录音状态
 
-    recognition.interimResults = true
-    recognition.lang = 'zh-CN'
+    recognition.interimResults = true; // 这里应该是 interimResults -> interimResults
+    recognition.lang = 'zh-CN';
 
     voiceBtn.addEventListener('click', () => {
-        if (recognition.isRecognizing) {
-            recognition.stop()
+        if (isRecording) { // 使用 isRecording 变量来检查是否正在录音
+            recognition.stop();
+            isRecording = false; // 更新录音状态
+            voiceBtn.classList.remove('active'); // 可以在这里直接移除 'active' 类，因为录音已经停止
         } else {
-            recognition.start()
-            voiceBtn.classList.add('active')
+            recognition.start();
+            isRecording = true; // 更新录音状态
+            voiceBtn.classList.add('active');
         }
-    });
-
-    recognition.addEventListener('start', () => {
-        recognition.isRecognizing = true
-    });
-
-    recognition.addEventListener('end', () => {
-        recognition.isRecognizing = false
-        voiceBtn.classList.remove('active')
     });
 
     recognition.addEventListener('result', (event) => {
@@ -33,18 +28,18 @@ if (SpeechRecognition) {
             .join('');
 
         if (event.results[0].isFinal) {
-            // 去掉最后的标点符号
-            inputField.value = transcript.replace(/[。！？]$/, '')
-            voiceBtn.classList.remove('active')
+            inputField.value = transcript.replace(/[。！？]$/, '');
+            // 这里不需要再次移除 'active' 类，因为点击按钮时已经处理过了
         }
     });
 
     recognition.addEventListener('error', (event) => {
-        console.error('Recognition error:', event.error)
-        voiceBtn.classList.remove('active')
+        console.error('Recognition error:', event.error);
+        isRecording = false; // 如果发生错误，确保更新录音状态为 false
+        voiceBtn.classList.remove('active');
     });
 } else {
-    console.error("该浏览器不支持语音识别功能")
+    console.error("该浏览器不支持语音识别功能");
 }
 
 document.querySelectorAll('.heart').forEach(item=>{
