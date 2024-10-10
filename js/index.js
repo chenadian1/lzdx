@@ -58,7 +58,7 @@ document.querySelectorAll('.heart').forEach(item=>{
 })
 
 document.querySelector('.voiceSearchBtn').addEventListener('click',()=>{
-    if(document.querySelector('.searchInput').value == "兰州大学文创笔记本"){
+    if(document.querySelector('.searchInput').value == "文创笔记本"){
         location.href = "notebook.html"
     }
 })
