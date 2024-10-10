@@ -13,13 +13,13 @@ if (SpeechRecognition) {
         if (isRecording) { // 使用 isRecording 变量来检查是否正在录音
             recognition.stop();
             isRecording = false; // 更新录音状态
-            voiceBtn.classList.remove('active'); // 可以在这里直接移除 'active' 类，因为录音已经停止
         } else {
             recognition.start();
             isRecording = true; // 更新录音状态
-            voiceBtn.classList.add('active');
         }
-        document.getElementById('name').innerHTML = "点击语音输入"
+        console.log('点击了语音按钮');
+        voiceBtn.classList.toggle('active');
+
     });
 
     recognition.addEventListener('result', (event) => {
@@ -40,7 +40,7 @@ if (SpeechRecognition) {
         voiceBtn.classList.remove('active');
     });
 } else {
-    alert("该浏览器不支持语音识别功能");
+    console.log('该浏览器不支持语音识别功能');
 }
 
 document.querySelectorAll('.heart').forEach(item=>{
