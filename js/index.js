@@ -6,7 +6,7 @@ if (SpeechRecognition) {
     const inputField = document.querySelector('.searchInput');
     let isRecording = false; // 添加一个变量来跟踪录音状态
 
-    recognition.interimResults = true; // 这里应该是 interimResults -> interimResults
+    recognition.intermediateResults = true; // 这里应该是 interimResults -> interimResults
     recognition.lang = 'zh-CN';
 
     voiceBtn.addEventListener('click', () => {
