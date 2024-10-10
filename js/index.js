@@ -101,7 +101,6 @@ window.onload = function () {
                 clearTimeout(times);
                 times = setTimeout(() => {
                     this.stop(); // xfVoice.stop();
-                    fixedBox.style.display = 'none';
                     startBtn.classList.remove("active")
                 }, 3000);
             };
