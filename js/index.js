@@ -93,7 +93,7 @@ window.onload = function () {
         },
         onTextChange: function (text) {
             //监听识别结果的变化
-            voiceTxt.value = text;
+            voiceTxt.value = text.replace(/[。！？]$/, '');
             // fixedTxt.innerText = text;
 
             // 3秒钟内没有说话，就自动关闭
