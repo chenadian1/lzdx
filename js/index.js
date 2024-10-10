@@ -19,6 +19,7 @@ if (SpeechRecognition) {
             isRecording = true; // 更新录音状态
             voiceBtn.classList.add('active');
         }
+        document.getElementById('name').innerHTML = "点击语音输入"
     });
 
     recognition.addEventListener('result', (event) => {
@@ -39,7 +40,7 @@ if (SpeechRecognition) {
         voiceBtn.classList.remove('active');
     });
 } else {
-   alert("该浏览器不支持语音识别功能");
+    alert("该浏览器不支持语音识别功能");
 }
 
 document.querySelectorAll('.heart').forEach(item=>{
