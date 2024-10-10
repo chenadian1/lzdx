@@ -39,7 +39,7 @@ if (SpeechRecognition) {
         voiceBtn.classList.remove('active');
     });
 } else {
-    console.error("该浏览器不支持语音识别功能");
+   alert("该浏览器不支持语音识别功能");
 }
 
 document.querySelectorAll('.heart').forEach(item=>{
