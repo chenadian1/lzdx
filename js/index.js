@@ -10,16 +10,24 @@ if (SpeechRecognition) {
     recognition.lang = 'zh-CN';
 
     voiceBtn.addEventListener('click', () => {
-        if (isRecording) { // 使用 isRecording 变量来检查是否正在录音
-            recognition.stop();
-            isRecording = false; // 更新录音状态
-        } else {
+        if (!isRecording) { // 使用 isRecording 变量来检查是否正在录音
             recognition.start();
             isRecording = true; // 更新录音状态
+            
+            // 设置定时器，在三秒后停止语音识别
+            setTimeout(() => {
+                recognition.stop();
+                isRecording = false; // 更新录音状态
+                voiceBtn.classList.remove('active'); // 移除按钮的激活状态
+            }, 3000); // 3000毫秒后执行
+            
+            console.log('点击了语音按钮');
+            voiceBtn.classList.add('active'); // 添加按钮的激活状态
+        } else {
+            recognition.stop();
+            isRecording = false; // 更新录音状态
+            voiceBtn.classList.remove('active'); // 如果正在录音，则停止并移除激活状态
         }
-        console.log('点击了语音按钮');
-        voiceBtn.classList.toggle('active');
-
     });
 
     recognition.addEventListener('result', (event) => {
